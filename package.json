@@ -1,0 +1,34 @@
+{
+  "name": "hashdrive",
+  "version": "1.0.0",
+  "description": "blockchain storage",
+  "main": "bin/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jashwanth0712/hashdrive.git"
+  },
+  "keywords": [
+    "blockchain",
+    "cloud",
+    "cli"
+  ],
+  "author": "jashwanth0712",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jashwanth0712/hashdrive/issues"
+  },
+  "homepage": "https://github.com/jashwanth0712/hashdrive#readme",
+  "dependencies": {
+    "boxen": "^7.0.1",
+    "chalk": "^5.2.0",
+    "figlet": "^1.5.2",
+    "fs": "^0.0.1-security",
+    "open": "^8.4.0",
+    "process": "^0.11.10",
+    "web3.storage": "^4.4.0",
+    "yargs": "^17.6.2"
+  }
+}
