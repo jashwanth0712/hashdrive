@@ -6,7 +6,9 @@ const {Web3Storage,getFilesFromPath}=require('web3.storage')
 const boxen = require('boxen')
 const yargs = require("yargs");
 const figlet = require('figlet');
-let token="";
+const { ThirdwebSDK } =require ("@thirdweb-dev/sdk/evm");
+const sdk = new ThirdwebSDK("goerli");
+let token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweDc2M2U4ZkMzNTFkNGQ0MUE4NWNFYUUyM2REMUQzNmFFODZDZEVlOGUiLCJpc3MiOiJ3ZWIzLXN0b3JhZ2UiLCJpYXQiOjE2NzI4MjIzOTc4ODUsIm5hbWUiOiJwcmFjdGljZSJ9.4bYpuLAKN_3pZAY0DSxrHY_8ejGG3CU-LRkRQrxzNs4";
 let data={
     "root":{
             "Tongue.mp4":"bafybeibd5rmgklya5foogrttemgblorxvwma2s3bvatg3cjpxbben337l4",
@@ -17,8 +19,7 @@ let data={
         }
 
     }
-// file structures and traversal
-// let data={"Tongue.mp4":"bafybeibd5rmgklya5foogrttemgblorxvwma2s3bvatg3cjpxbben337l4","years.txt":"bafybeibhb3mgrddh3s7dq7eywieql2rdesz2upxqh7kbb2mtggrbg7lmrq","qr.png":"bafybeieaaycoktceieii4dnjbbdjgqyyq6ve66ctx72ffl3akfxcajxgoa"}
+ let data_list={"dataset.csv":"bafybeighsdgr6pciygessmkcvc3h42kf3kjg6zyjxigacvvfewvktce3xi", "Tongue.mp4":"bafybeibd5rmgklya5foogrttemgblorxvwma2s3bvatg3cjpxbben337l4","years.txt":"bafybeibhb3mgrddh3s7dq7eywieql2rdesz2upxqh7kbb2mtggrbg7lmrq","qr.png":"bafybeieaaycoktceieii4dnjbbdjgqyyq6ve66ctx72ffl3akfxcajxgoa"}
 present_directory="root"
 present_directory_path=["root"]
 present_root=data["root"]
@@ -61,17 +62,30 @@ fs.readFile("token.txt", function(err, buf) {
 // console.log(token)
 // function to upload file
 async function upload_files(){
+    // const contract = await sdk.getContract("0x1E40f4230B9ae6aFfa91dB05b0Dc5566E8DC8C0a");
+
     const storage = new Web3Storage({ token })
     const files = []
-
-    for (const path of args._) {
-        const pathFiles = await getFilesFromPath(path)
-        files.push(...pathFiles)
-    }
+    path=argv.u||argv.upload
+    const pathFiles = await getFilesFromPath(path)
+    files.push(...pathFiles)
 
     console.log(`Uploading ${files.length} files`)
     const cid = await storage.put(files)
+    data_list[path]=cid;
+    // const data = await contract.call("put_file", path, cid)
     console.log('Content added with CID:', cid)
+
+}
+async function download_file(){
+    // const contract = await sdk.getContract("0x1E40f4230B9ae6aFfa91dB05b0Dc5566E8DC8C0a");
+    console.log("Downloading...")
+    file_name=argv.d||argv.download
+    if(file_name in data_list){
+        // cid=await contract.call("get_cid", file_name)
+        link="https://"+data_list[file_name]+".ipfs.w3s.link/"+file_name
+        open(link) 
+    }
 }
 const usage = 
 boxen(chalk.green("\n" + "IPFS Storage manager" + "\n"), {padding: 1, borderColor: 'green', dimBorder: true}) + "\n"
@@ -140,23 +154,20 @@ else if (argv.token != null || argv.t != null){
     });
 }
 else if(argv.d!=null || argv.download!=null){
-    console.log("Downloading...")
-    file_name=argv.d||argv.download
-    if(file_name in data){
-        link="https://"+data[file_name]+".ipfs.w3s.link/"+file_name
-        open(link) 
-    }
+    download_file();
 }
 else if(argv.p!=null || argv.pwd != null){
     console.log("We have",present_directory)
 }
 else if (argv.upload != null || argv.u != null){
-    if (token==null ||(argv.token==null && argv.t==null) ) {
-        return console.error('A token is needed. You can create one on https://web3.storage')
-    }
-    else{
-        upload_files()
-    }
+    upload_files()
+
+    // if (token==null ||(argv.token==null && argv.t==null) ) {
+    //     return console.error('A token is needed. You can create one on https://web3.storage')
+    // }
+    // else{
+    //     upload_files()
+    // }
 }
 else {
     console.log(

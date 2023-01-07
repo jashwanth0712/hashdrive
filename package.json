@@ -10,8 +10,8 @@
     "type": "git",
     "url": "git+https://github.com/jashwanth0712/hashdrive.git"
   },
-  "bin": {  
-    "hashdrive": "./bin/index.js"  
+  "bin": {
+    "hashdrive": "./bin/index.js"
   },
   "keywords": [
     "cil",
@@ -26,9 +26,11 @@
   },
   "homepage": "https://github.com/jashwanth0712/hashdrive#readme",
   "dependencies": {
+    "@thirdweb-dev/sdk": "^3.6.9",
     "@vitalets/google-translate-api": "^7.0.0",
     "boxen": "^4.2.0",
     "chalk": "^4.1.1",
+    "ethers": "^5.7.2",
     "figlet": "^1.5.2",
     "fs": "^0.0.1-security",
     "minimist": "^1.2.7",
