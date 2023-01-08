@@ -7,14 +7,14 @@ what if there is only one command like `git push ` `git pull` to upload and get 
 **Hashdrive** solves the problem, we provide a CLI tool that user can download and use it anywhere , in any directory or filepath to upload the file just with one command ,
 ![drive](https://github.com/jashwanth0712/hashdrive/blob/main/images/home_page.png?raw=true)
 # features📃
-| command      | Description || argument    |
+| command      | Description | argument    |
 | :---        |    :----:   |          ---: |
-| -t      | updating the web3.storage API token               || API_Token   |
-| -u      |  upload file to web3.storage                || filename  |
-| -d     |  download file                    || filename   |
-| -ls     |   list all file structures in present directory             ||  - |
-| -pwd      | returns the present working directory               || - |
-| -cd      | change directory                    || folder name  |
+| -t      | updating the web3.storage API token               | API_Token   |
+| -u      |  upload file to web3.storage                | filename  |
+| -d     |  download file                    | filename   |
+| -ls     |   list all file structures in present directory             |  - |
+| -pwd      | returns the present working directory               | - |
+| -cd      | change directory                    | folder name  |
 
 # File structures
 We have decided to upload only files into the web3.storage , and store the file structure in a data file .This was required for `ls`, `cd` and `pwd` commands , where we have to traverse through the file structure, Due to this there were huge conflicts on the file storage and retrieval process.
