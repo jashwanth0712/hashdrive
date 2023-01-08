@@ -19,7 +19,9 @@ let data={
         }
 
     }
- let data_list={"dataset.csv":"bafybeighsdgr6pciygessmkcvc3h42kf3kjg6zyjxigacvvfewvktce3xi", "Tongue.mp4":"bafybeibd5rmgklya5foogrttemgblorxvwma2s3bvatg3cjpxbben337l4","years.txt":"bafybeibhb3mgrddh3s7dq7eywieql2rdesz2upxqh7kbb2mtggrbg7lmrq","qr.png":"bafybeieaaycoktceieii4dnjbbdjgqyyq6ve66ctx72ffl3akfxcajxgoa"}
+ let data_list={"dataset.csv":"bafybeighsdgr6pciygessmkcvc3h42kf3kjg6zyjxigacvvfewvktce3xi", "Tongue.mp4":"bafybeibd5rmgklya5foogrttemgblorxvwma2s3bvatg3cjpxbben337l4","years.txt":"bafybeibhb3mgrddh3s7dq7eywieql2rdesz2upxqh7kbb2mtggrbg7lmrq","qr.png":"bafybeieaaycoktceieii4dnjbbdjgqyyq6ve66ctx72ffl3akfxcajxgoa",
+"dataset1.csv":"bafybeigdyzkgh3lvgnqhjws4h37djirgo7d5mg4v2h2ustoqc775tqouna",
+"dataser2.csv":"bafybeic5vbddejok5m3avq5zru242qstzxwrv2acwcs4yogsb4giciepo4"}
 present_directory="root"
 present_directory_path=["root"]
 present_root=data["root"]
@@ -89,7 +91,7 @@ async function download_file(){
 }
 const usage = 
 boxen(chalk.green("\n" + "IPFS Storage manager" + "\n"), {padding: 1, borderColor: 'green', dimBorder: true}) + "\n"
-+chalk.keyword('violet')("\nUsage: #drive <options>\n"
++chalk.keyword('violet')("\nUsage: hashdrive <options>\n"
 +chalk.keyword('blue')('\nInstallation steps ')
 + chalk.keyword('orange')("\n1. Signup with https://web3.storage/login/ \n2.Get you API token at https://web3.storage/tokens \n3.Run the command ")
 + chalk.keyword('violet')("hashdrive -t <your-API-TOKEN-key>")
@@ -172,7 +174,7 @@ else if (argv.upload != null || argv.u != null){
 else {
     console.log(
         chalk.yellow(
-            figlet.textSync('#DRIVE', { horizontalLayout: 'full' })
+            figlet.textSync('HASHDRIVE', { horizontalLayout: 'full' })
         )
     );
     yargs.showHelp();
